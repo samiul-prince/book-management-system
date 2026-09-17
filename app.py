@@ -48,4 +48,6 @@ def prompt_delete_book():
 
     database.delete_book(name)
 
+
+print("search feature started.")
 menu()

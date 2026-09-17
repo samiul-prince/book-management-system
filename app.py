@@ -6,6 +6,7 @@ Enter:
 - 'l' to list a book
 - 'r' to mark a book as read
 - 'd' to delete a book
+- 'f' to feature books
 - 'q' to quit
 your choice: """
 
@@ -21,6 +22,8 @@ def menu():
             read_book()
         elif user_input=='d':
             prompt_delete_book()
+        elif user_input=='f':
+            feature_books()
         else:
             print("unknown command! please type carefully.")
 
@@ -37,7 +40,7 @@ def list_books():
     for book in books:
         read='YES' if book['read'] else 'NO'
         print(f"{book['name']}, by {book['author']}, read:{read}")
-
+        
 def read_book():
     name=input("Enter the name of the book that you finished reading: ")
 
@@ -47,7 +50,11 @@ def prompt_delete_book():
     name= input("Enter the name of book you wish to delete: ")
 
     database.delete_book(name)
-
+    
+def feature_books():
+    books= database.get_all_books()
+    for book in books:
+        print(book,"\n")
 
 print("search feature started.")
 menu()
